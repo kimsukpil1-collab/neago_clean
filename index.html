@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에어컨 청소 전문가 - 메인</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; background: #f0f8ff; }
+        nav { background: #003366; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-weight: bold; font-size: 2rem; text-decoration: none; }
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        .pay-section { background: white; padding: 40px 20px; border-bottom: 5px solid #0055ff; text-align: center; }
+        .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .p-btn { display: flex; align-items: center; justify-content: center; height: 120px; border-radius: 20px; text-decoration: none; font-weight: 900; font-size: 1.6rem; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; }
+        .n { background: #2ecc71; } .c { background: #e62117; } .k { background: #ffeb00; color: #3c1e1e; }
+        .s { background: #ffbe00; color: #000; } .a { background: #f39c12; } .g { background: #3498db; }
+        .hero { padding: 80px 20px; text-align: center; background: #0055ff; color: white; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">❄️ 클린에어컨</a>
+        <ul>
+            <li><a href="index.html">홈</a></li>
+            <li><a href="about.html">서비스소개</a></li>
+            <li><a href="portfolio.html">청소사례</a></li>
+            <li><a href="contact.html">예약상담</a></li>
+        </ul>
+    </nav>
+    <section class="pay-section">
+        <h1 style="margin-bottom:20px;">❄️ 지금 결제하면 2만원 즉시 할인! ❄️</h1>
+        <div class="pay-grid">
+            <a href="#" class="p-btn n">네이버페이</a> <a href="#" class="p-btn c">쿠팡 구매</a> <a href="#" class="p-btn k">카카오페이</a>
+            <a href="#" class="p-btn s">쓱닷컴 구매</a> <a href="#" class="p-btn a">옥션 구매</a> <a href="#" class="p-btn g">G마켓 구매</a>
+        </div>
+    </section>
+    <div class="hero">
+        <h2>숨막히는 곰팡이, 완벽 분해 청소로 해결하세요!</h2>
+        <p>서울/경기 전 지역 1시간 내 방문 가능</p>
+    </div>
+    <script>
+        document.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); alert("🚀 예약 폭주로 결제창 오픈 준비 중입니다!"); }));
+    </script>
+</body>
+</html>

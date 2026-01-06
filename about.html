@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서비스 소개</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; }
+        nav { background: #003366; padding: 20px; display: flex; justify-content: space-between; }
+        nav a { color: white; text-decoration: none; font-weight: bold; padding: 0 10px; }
+        .pay-header { background: #f4f4f4; padding: 20px; }
+        .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 1200px; margin: 0 auto; }
+        .p-btn { display: flex; align-items: center; justify-content: center; height: 70px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; }
+        .n { background: #2ecc71; } .c { background: #e62117; } .k { background: #ffeb00; color: #3c1e1e; }
+        .s { background: #ffbe00; color: #000; } .a { background: #f39c12; } .g { background: #3498db; }
+        .content { max-width: 800px; margin: 40px auto; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html" style="font-size:1.5rem">❄️ 클린에어컨</a><div><a href="about.html">소개</a><a href="portfolio.html">사례</a><a href="contact.html">예약</a></div></nav>
+    <div class="pay-header">
+        <div class="pay-grid">
+            <a href="#" class="p-btn n">네이버</a> <a href="#" class="p-btn c">쿠팡</a> <a href="#" class="p-btn k">카카오</a>
+            <a href="#" class="p-btn s">쓱닷컴</a> <a href="#" class="p-btn a">옥션</a> <a href="#" class="p-btn g">G마켓</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>고압 살균 세척 전문</h1>
+        <p>우리는 단순 청소가 아닌 '살균'을 합니다. 가족의 건강을 지키세요.</p>
+        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7bc3?auto=format&fit=crop&w=800&q=80" style="width:100%; border-radius:20px;">
+    </div>
+    <script>
+        document.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); alert("🚀 예약 폭주로 결제창 오픈 준비 중입니다!"); }));
+    </script>
+</body>
+</html>
