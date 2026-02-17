@@ -30,10 +30,39 @@
         <input type="text" placeholder="성함">
         <input type="text" placeholder="연락처">
         <textarea rows="5" placeholder="에어컨 종류(벽걸이/스탠드/천장형)를 적어주세요"></textarea>
-        <button>청소 예약하기</button>
+        <button onclick="handleSubmit()">청소 예약하기</button>
+        <div id="successMsg" style="display:none; margin-top:20px; padding:20px; background:#e8f5e9; border-radius:10px; text-align:center; font-weight:bold; color:#2e7d32;">✅ 예약이 접수되었습니다! 24시간 내 연락드리겠습니다.</div>
     </div>
     <script>
         document.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); alert("🚀 예약 폭주로 결제창 오픈 준비 중입니다!"); }));
+
+        async function handleSubmit() {
+            const inputs = document.querySelectorAll('input');
+            const name = inputs[0].value.trim();
+            const contact = inputs[1].value.trim();
+            const detail = document.querySelector('textarea').value.trim();
+            if (!name || !contact) { alert('성함과 연락처를 입력해주세요.'); return; }
+            const now = new Date();
+            const dateStr = String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
+            let count = parseInt(localStorage.getItem('ac_count') || '0');
+            if (localStorage.getItem('ac_date') !== dateStr) count = 1; else count++;
+            localStorage.setItem('ac_date', dateStr);
+            localStorage.setItem('ac_count', String(count));
+            const text = `❄️ [에어컨청소주문_${dateStr}_${count}]\n\n👤 성함: ${name}\n📞 연락처: ${contact}\n📝 내용: ${detail}`;
+            document.getElementById('successMsg').style.display = 'block';
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbymzFquDdmIHcimqhO0LkSgNt8xp5x9f7WCztr9BZJedBfcPVjHlH2d9sI8nK9xkM8JVQ/exec', {
+                    method: 'POST', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: '7299827824', text: text })
+                });
+            } catch(e) { console.error(e); }
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+                document.querySelectorAll('input').forEach(i => i.value = '');
+                document.querySelector('textarea').value = '';
+            }, 4000);
+        }
     </script>
 </body>
 </html>
