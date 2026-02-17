@@ -3,34 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서비스 소개</title>
+    <title>서비스소개 — 클린에어컨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; }
-        nav { background: #003366; padding: 20px; display: flex; justify-content: space-between; }
-        nav a { color: white; text-decoration: none; font-weight: bold; padding: 0 10px; }
-        .pay-header { background: #f4f4f4; padding: 20px; }
-        .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 1200px; margin: 0 auto; }
-        .p-btn { display: flex; align-items: center; justify-content: center; height: 70px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; }
-        .n { background: #2ecc71; } .c { background: #e62117; } .k { background: #ffeb00; color: #3c1e1e; }
-        .s { background: #ffbe00; color: #000; } .a { background: #f39c12; } .g { background: #3498db; }
-        .content { max-width: 800px; margin: 40px auto; text-align: center; padding: 20px; }
+        :root { --blue:#0055ff; --ice:#e8f4ff; --dark:#0a1628; --mid:#1a3a6b; --gold:#ffbe00; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Noto Sans KR',sans-serif; background:#fff; color:var(--dark); }
+        nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(0,30,80,0.97); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:0 60px; height:70px; border-bottom:2px solid rgba(0,85,255,0.4); }
+        .logo { font-family:'Black Han Sans',sans-serif; font-size:1.6rem; color:#fff; text-decoration:none; }
+        .logo span { color:var(--gold); }
+        nav ul { list-style:none; display:flex; gap:8px; }
+        nav ul a { color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.88rem; font-weight:700; padding:8px 16px; border:1px solid rgba(255,255,255,0.15); border-radius:4px; transition:all 0.3s; }
+        nav ul a:hover { color:#fff; border-color:var(--blue); background:rgba(0,85,255,0.2); }
+        .nav-cta { background:var(--blue) !important; color:#fff !important; border-color:var(--blue) !important; }
+        .page-hero { padding:140px 60px 80px; background:linear-gradient(160deg,var(--dark),var(--mid)); text-align:center; }
+        .page-hero h1 { font-family:'Black Han Sans',sans-serif; font-size:clamp(2rem,5vw,4rem); color:#fff; margin-bottom:16px; }
+        .page-hero p { color:rgba(255,255,255,0.65); font-size:1.05rem; }
+        .sec-label { font-size:0.72rem; letter-spacing:5px; color:var(--blue); font-weight:900; display:block; margin-bottom:16px; text-transform:uppercase; }
+        .sec-h2 { font-family:'Black Han Sans',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); color:var(--dark); margin-bottom:50px; }
+        /* 서비스 종류 */
+        .services { padding:100px 60px; }
+        .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1200px; margin:0 auto; }
+        .svc-card { border:2px solid rgba(0,85,255,0.12); border-radius:16px; padding:40px 28px; transition:all 0.3s; }
+        .svc-card:hover { border-color:var(--blue); box-shadow:0 16px 40px rgba(0,85,255,0.1); transform:translateY(-4px); }
+        .svc-icon { font-size:3rem; margin-bottom:20px; display:block; }
+        .svc-name { font-family:'Black Han Sans',sans-serif; font-size:1.4rem; color:var(--dark); margin-bottom:8px; }
+        .svc-price { font-size:1.6rem; font-weight:900; color:var(--blue); margin-bottom:16px; }
+        .svc-price span { font-size:0.9rem; color:#888; font-weight:400; }
+        .svc-list { list-style:none; }
+        .svc-list li { font-size:0.88rem; color:#555; padding:6px 0; border-bottom:1px solid #f0f0f0; display:flex; align-items:center; gap:8px; }
+        .svc-list li::before { content:'✓'; color:var(--blue); font-weight:900; }
+        /* 장비 */
+        .equipment { padding:100px 60px; background:var(--dark); }
+        .eq-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1200px; margin:60px auto 0; }
+        .eq-card { background:rgba(255,255,255,0.04); border:1px solid rgba(0,85,255,0.2); border-radius:12px; padding:30px 20px; text-align:center; }
+        .eq-icon { font-size:2.5rem; margin-bottom:14px; display:block; }
+        .eq-name { font-weight:900; color:#fff; font-size:0.95rem; }
+        .eq-desc { font-size:0.8rem; color:rgba(255,255,255,0.45); margin-top:8px; line-height:1.6; }
+        /* CTA */
+        .cta-section { padding:100px 20px; text-align:center; background:linear-gradient(135deg,var(--blue),#0033aa); }
+        .cta-section h2 { font-family:'Black Han Sans',sans-serif; font-size:clamp(2rem,4vw,3rem); color:#fff; margin-bottom:16px; }
+        .cta-section p { color:rgba(255,255,255,0.8); margin-bottom:40px; font-size:1.05rem; }
+        .btn-main { padding:18px 48px; background:#fff; color:var(--blue); font-weight:900; font-size:1rem; border:none; border-radius:6px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.3s; }
+        .btn-main:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
+        footer { background:#060f1f; padding:40px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(0,85,255,0.2); }
+        .foot-logo { font-family:'Black Han Sans',sans-serif; font-size:1.3rem; color:#fff; }
+        .foot-logo span { color:var(--gold); }
+        .foot-info { font-size:0.8rem; color:rgba(255,255,255,0.4); text-align:right; line-height:1.8; }
+        @media (max-width:1024px) {
+            nav { padding:0 20px; }
+            nav ul a { padding:6px 10px; font-size:0.8rem; }
+            .services,.equipment { padding-left:20px; padding-right:20px; }
+            .svc-grid { grid-template-columns:1fr; max-width:420px; margin:0 auto; }
+            .eq-grid { grid-template-columns:repeat(2,1fr); }
+            footer { flex-direction:column; gap:16px; padding:30px 20px; text-align:center; }
+            .foot-info { text-align:center; }
+            .page-hero { padding:120px 20px 60px; }
+        }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" style="font-size:1.5rem">❄️ 클린에어컨</a><div><a href="about.html">소개</a><a href="portfolio.html">사례</a><a href="contact.html">예약</a></div></nav>
-    <div class="pay-header">
-        <div class="pay-grid">
-            <a href="#" class="p-btn n">네이버</a> <a href="#" class="p-btn c">쿠팡</a> <a href="#" class="p-btn k">카카오</a>
-            <a href="#" class="p-btn s">쓱닷컴</a> <a href="#" class="p-btn a">옥션</a> <a href="#" class="p-btn g">G마켓</a>
+<nav>
+    <a href="index.html" class="logo">❄️ 클린<span>에어컨</span></a>
+    <ul>
+        <li><a href="index.html">홈</a></li>
+        <li><a href="about.html">서비스소개</a></li>
+        <li><a href="portfolio.html">청소사례</a></li>
+        <li><a href="contact.html" class="nav-cta">예약상담</a></li>
+    </ul>
+</nav>
+<section class="page-hero">
+    <h1>서비스 소개</h1>
+    <p>에어컨 종류에 맞는 전문 살균 세척 서비스</p>
+</section>
+<section class="services">
+    <div style="max-width:1200px;margin:0 auto;">
+        <span class="sec-label">OUR SERVICES</span>
+        <h2 class="sec-h2">청소 서비스 종류</h2>
+        <div class="svc-grid">
+            <div class="svc-card">
+                <span class="svc-icon">🖼️</span>
+                <div class="svc-name">벽걸이형</div>
+                <div class="svc-price">49,000원 <span>~ (세금포함)</span></div>
+                <ul class="svc-list">
+                    <li>완전 분해 세척</li>
+                    <li>고압 살균 세척</li>
+                    <li>필터·열교환기 청소</li>
+                    <li>작업 전·후 사진 제공</li>
+                </ul>
+            </div>
+            <div class="svc-card" style="border-color:var(--blue);">
+                <span class="svc-icon">🏛️</span>
+                <div class="svc-name">스탠드형</div>
+                <div class="svc-price">79,000원 <span>~ (세금포함)</span></div>
+                <ul class="svc-list">
+                    <li>완전 분해 세척</li>
+                    <li>고압 살균 세척</li>
+                    <li>내부 드레인 청소</li>
+                    <li>작업 전·후 사진 제공</li>
+                </ul>
+            </div>
+            <div class="svc-card">
+                <span class="svc-icon">🏢</span>
+                <div class="svc-name">천장형</div>
+                <div class="svc-price">99,000원 <span>~ (세금포함)</span></div>
+                <ul class="svc-list">
+                    <li>완전 분해 세척</li>
+                    <li>고압 살균 세척</li>
+                    <li>드레인·팬모터 청소</li>
+                    <li>작업 전·후 사진 제공</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="content">
-        <h1>고압 살균 세척 전문</h1>
-        <p>우리는 단순 청소가 아닌 '살균'을 합니다. 가족의 건강을 지키세요.</p>
-        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7bc3?auto=format&fit=crop&w=800&q=80" style="width:100%; border-radius:20px;">
+</section>
+<section class="equipment">
+    <div style="max-width:1200px;margin:0 auto;">
+        <span class="sec-label" style="color:var(--gold);">EQUIPMENT</span>
+        <h2 class="sec-h2" style="color:#fff;">전문 장비 사용</h2>
+        <div class="eq-grid">
+            <div class="eq-card"><span class="eq-icon">💨</span><div class="eq-name">고압 스팀기</div><div class="eq-desc">150°C 고압 스팀으로 완전 살균</div></div>
+            <div class="eq-card"><span class="eq-icon">🧴</span><div class="eq-name">친환경 세제</div><div class="eq-desc">인체 무해 친환경 살균 세제 사용</div></div>
+            <div class="eq-card"><span class="eq-icon">🔬</span><div class="eq-name">UV 살균등</div><div class="eq-desc">자외선으로 잔여 균 완전 제거</div></div>
+            <div class="eq-card"><span class="eq-icon">📷</span><div class="eq-name">작업 기록</div><div class="eq-desc">전·후 사진 즉시 제공</div></div>
+        </div>
     </div>
-    <script>
-        document.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); alert("🚀 예약 폭주로 결제창 오픈 준비 중입니다!"); }));
-    </script>
+</section>
+<section class="cta-section">
+    <h2>지금 바로 예약하세요!</h2>
+    <p>성수기 전 미리 예약하면 더 빠른 방문이 가능합니다.</p>
+    <a href="contact.html" class="btn-main">무료 상담 예약하기</a>
+</section>
+<footer>
+    <div class="foot-logo">❄️ 클린<span>에어컨</span></div>
+    <div class="foot-info">서울·경기 전 지역 서비스<br>© 2025 클린에어컨. All rights reserved.</div>
+</footer>
 </body>
 </html>

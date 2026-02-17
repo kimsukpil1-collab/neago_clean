@@ -3,66 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약 및 상담</title>
+    <title>예약상담 — 클린에어컨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; background: #f0f2f5; }
-        nav { background: #003366; padding: 20px; display: flex; justify-content: space-between; }
-        nav a { color: white; text-decoration: none; font-weight: bold; padding: 0 10px; }
-        .wrap { max-width: 900px; margin: 30px auto; background: white; padding: 40px; border-radius: 20px; }
-        .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
-        .p-btn { display: flex; align-items: center; justify-content: center; height: 80px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; }
-        .n { background: #2ecc71; } .c { background: #e62117; } .k { background: #ffeb00; color: #3c1e1e; }
-        .s { background: #ffbe00; color: #000; } .a { background: #f39c12; } .g { background: #3498db; }
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; }
-        button { width: 100%; padding: 20px; background: #0055ff; color: white; border: none; font-weight: bold; font-size: 1.2rem; border-radius: 10px; cursor: pointer; }
+        :root { --blue:#0055ff; --ice:#e8f4ff; --dark:#0a1628; --mid:#1a3a6b; --gold:#ffbe00; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Noto Sans KR',sans-serif; background:#f8faff; color:var(--dark); }
+        nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(0,30,80,0.97); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:0 60px; height:70px; border-bottom:2px solid rgba(0,85,255,0.4); }
+        .logo { font-family:'Black Han Sans',sans-serif; font-size:1.6rem; color:#fff; text-decoration:none; }
+        .logo span { color:var(--gold); }
+        nav ul { list-style:none; display:flex; gap:8px; }
+        nav ul a { color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.88rem; font-weight:700; padding:8px 16px; border:1px solid rgba(255,255,255,0.15); border-radius:4px; transition:all 0.3s; }
+        nav ul a:hover { color:#fff; border-color:var(--blue); background:rgba(0,85,255,0.2); }
+        .nav-cta { background:var(--blue) !important; color:#fff !important; border-color:var(--blue) !important; }
+        .page-hero { padding:140px 60px 80px; background:linear-gradient(160deg,var(--dark),var(--mid)); text-align:center; }
+        .page-hero h1 { font-family:'Black Han Sans',sans-serif; font-size:clamp(2rem,5vw,4rem); color:#fff; margin-bottom:16px; }
+        .page-hero p { color:rgba(255,255,255,0.65); font-size:1.05rem; }
+        .contact-wrap { max-width:640px; margin:0 auto; padding:80px 20px 120px; }
+        .form-card {
+            background:#fff; border-radius:20px; padding:50px 50px 40px;
+            box-shadow:0 20px 60px rgba(0,85,255,0.1);
+            border:1px solid rgba(0,85,255,0.12);
+            position:relative; overflow:hidden;
+        }
+        .form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--blue),#5599ff,var(--blue)); }
+        .form-title { font-family:'Black Han Sans',sans-serif; font-size:1.8rem; color:var(--dark); margin-bottom:8px; }
+        .form-sub { font-size:0.9rem; color:#888; margin-bottom:36px; }
+        .field { margin-bottom:22px; }
+        .field label { display:block; font-size:0.78rem; font-weight:900; color:#555; letter-spacing:1px; margin-bottom:8px; text-transform:uppercase; }
+        .field input, .field textarea, .field select {
+            width:100%; padding:16px 20px;
+            border:1.5px solid #e0e8f5; border-radius:10px;
+            font-size:0.95rem; font-family:'Noto Sans KR',sans-serif;
+            color:var(--dark); background:#f8faff;
+            outline:none; transition:border-color 0.3s, box-shadow 0.3s;
+            box-sizing:border-box;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            border-color:var(--blue); box-shadow:0 0 0 3px rgba(0,85,255,0.08);
+            background:#fff;
+        }
+        .field textarea { resize:vertical; min-height:120px; }
+        .submit-btn {
+            width:100%; padding:20px;
+            background:var(--blue); color:#fff;
+            font-family:'Black Han Sans',sans-serif; font-size:1.2rem;
+            border:none; border-radius:10px; cursor:pointer;
+            transition:all 0.3s; margin-bottom:14px;
+            box-shadow:0 8px 24px rgba(0,85,255,0.3);
+        }
+        .submit-btn:hover { background:#0044dd; transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,85,255,0.4); }
+        .info-row {
+            display:flex; align-items:center; gap:12px;
+            background:#f0f5ff; border-radius:10px; padding:16px 20px;
+            margin-top:20px;
+        }
+        .info-icon { font-size:1.4rem; }
+        .info-text { font-size:0.85rem; color:#555; line-height:1.6; }
+        .info-text strong { color:var(--blue); }
+        #successMsg {
+            display:none; position:absolute; inset:0;
+            background:rgba(255,255,255,0.98); border-radius:20px;
+            flex-direction:column; justify-content:center; align-items:center;
+            text-align:center; z-index:10;
+        }
+        .success-icon { font-size:4rem; margin-bottom:20px; }
+        .success-title { font-family:'Black Han Sans',sans-serif; font-size:1.8rem; color:var(--blue); margin-bottom:10px; }
+        .success-sub { font-size:0.95rem; color:#666; }
+        footer { background:#060f1f; padding:40px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(0,85,255,0.2); }
+        .foot-logo { font-family:'Black Han Sans',sans-serif; font-size:1.3rem; color:#fff; }
+        .foot-logo span { color:var(--gold); }
+        .foot-info { font-size:0.8rem; color:rgba(255,255,255,0.4); text-align:right; line-height:1.8; }
+        @media (max-width:768px) {
+            nav { padding:0 20px; }
+            nav ul a { padding:6px 10px; font-size:0.8rem; }
+            .form-card { padding:36px 24px 30px; }
+            footer { flex-direction:column; gap:16px; padding:30px 20px; text-align:center; }
+            .foot-info { text-align:center; }
+            .page-hero { padding:120px 20px 60px; }
+        }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" style="font-size:1.5rem">❄️ 클린에어컨</a><div><a href="about.html">소개</a><a href="portfolio.html">사례</a><a href="contact.html">예약</a></div></nav>
-    <div class="wrap">
-        <h2 style="text-align:center; color:#e62117;">💰 상담 전 빠른 결제 (예약 우선권) 💰</h2>
-        <div class="pay-grid">
-            <a href="#" class="p-btn n">네이버</a> <a href="#" class="p-btn c">쿠팡</a> <a href="#" class="p-btn k">카카오</a>
-            <a href="#" class="p-btn s">쓱닷컴</a> <a href="#" class="p-btn a">옥션</a> <a href="#" class="p-btn g">G마켓</a>
+<nav>
+    <a href="index.html" class="logo">❄️ 클린<span>에어컨</span></a>
+    <ul>
+        <li><a href="index.html">홈</a></li>
+        <li><a href="about.html">서비스소개</a></li>
+        <li><a href="portfolio.html">청소사례</a></li>
+        <li><a href="contact.html" class="nav-cta">예약상담</a></li>
+    </ul>
+</nav>
+<section class="page-hero">
+    <h1>예약 상담</h1>
+    <p>아래 양식을 작성하시면 24시간 내 연락드립니다</p>
+</section>
+<div class="contact-wrap">
+    <div class="form-card">
+        <div id="successMsg">
+            <div class="success-icon">✅</div>
+            <div class="success-title">예약이 접수되었습니다!</div>
+            <div class="success-sub">24시간 내 연락드리겠습니다.</div>
         </div>
-        <hr>
-        <h2>방문 견적 요청</h2>
-        <input type="text" placeholder="성함">
-        <input type="text" placeholder="연락처">
-        <textarea rows="5" placeholder="에어컨 종류(벽걸이/스탠드/천장형)를 적어주세요"></textarea>
-        <button onclick="handleSubmit()">청소 예약하기</button>
-        <div id="successMsg" style="display:none; margin-top:20px; padding:20px; background:#e8f5e9; border-radius:10px; text-align:center; font-weight:bold; color:#2e7d32;">✅ 예약이 접수되었습니다! 24시간 내 연락드리겠습니다.</div>
+        <div class="form-title">청소 예약 신청</div>
+        <p class="form-sub">성함, 연락처, 에어컨 종류를 알려주세요</p>
+        <div class="field">
+            <label>성함</label>
+            <input type="text" id="userName" placeholder="홍길동">
+        </div>
+        <div class="field">
+            <label>연락처</label>
+            <input type="text" id="userContact" placeholder="010-0000-0000">
+        </div>
+        <div class="field">
+            <label>에어컨 종류</label>
+            <select id="acType">
+                <option value="">선택해주세요</option>
+                <option value="벽걸이형">벽걸이형</option>
+                <option value="스탠드형">스탠드형</option>
+                <option value="천장형">천장형</option>
+                <option value="기타">기타</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>추가 내용 (선택)</label>
+            <textarea id="userNote" placeholder="대수, 위치, 요청사항 등 자유롭게 적어주세요"></textarea>
+        </div>
+        <button class="submit-btn" onclick="handleSubmit()">예약 신청하기 ❄️</button>
+        <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-text"><strong>서울·경기 전 지역</strong> 1시간 내 방문 가능<br>성수기(6~8월) 예약은 미리 해두시길 권장합니다</div>
+        </div>
     </div>
-    <script>
-        document.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); alert("🚀 예약 폭주로 결제창 오픈 준비 중입니다!"); }));
-
-        async function handleSubmit() {
-            const inputs = document.querySelectorAll('input');
-            const name = inputs[0].value.trim();
-            const contact = inputs[1].value.trim();
-            const detail = document.querySelector('textarea').value.trim();
-            if (!name || !contact) { alert('성함과 연락처를 입력해주세요.'); return; }
-            const now = new Date();
-            const dateStr = String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
-            let count = parseInt(localStorage.getItem('ac_count') || '0');
-            if (localStorage.getItem('ac_date') !== dateStr) count = 1; else count++;
-            localStorage.setItem('ac_date', dateStr);
-            localStorage.setItem('ac_count', String(count));
-            const text = `❄️ [에어컨청소주문_${dateStr}_${count}]\n\n👤 성함: ${name}\n📞 연락처: ${contact}\n📝 내용: ${detail}`;
-            document.getElementById('successMsg').style.display = 'block';
-            try {
-                await fetch('https://script.google.com/macros/s/AKfycbymzFquDdmIHcimqhO0LkSgNt8xp5x9f7WCztr9BZJedBfcPVjHlH2d9sI8nK9xkM8JVQ/exec', {
-                    method: 'POST', mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: '7299827824', text: text })
-                });
-            } catch(e) { console.error(e); }
-            setTimeout(() => {
-                document.getElementById('successMsg').style.display = 'none';
-                document.querySelectorAll('input').forEach(i => i.value = '');
-                document.querySelector('textarea').value = '';
-            }, 4000);
-        }
-    </script>
+</div>
+<footer>
+    <div class="foot-logo">❄️ 클린<span>에어컨</span></div>
+    <div class="foot-info">서울·경기 전 지역 서비스<br>© 2025 클린에어컨. All rights reserved.</div>
+</footer>
+<script>
+    async function handleSubmit() {
+        const name = document.getElementById('userName').value.trim();
+        const contact = document.getElementById('userContact').value.trim();
+        const acType = document.getElementById('acType').value;
+        const note = document.getElementById('userNote').value.trim();
+        if (!name || !contact) { alert('성함과 연락처를 입력해주세요.'); return; }
+        const now = new Date();
+        const dateStr = String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
+        let count = parseInt(localStorage.getItem('ac_count') || '0');
+        if (localStorage.getItem('ac_date') !== dateStr) count = 1; else count++;
+        localStorage.setItem('ac_date', dateStr);
+        localStorage.setItem('ac_count', String(count));
+        const text = `❄️ [에어컨청소주문_${dateStr}_${count}]\n\n👤 성함: ${name}\n📞 연락처: ${contact}\n🔧 에어컨 종류: ${acType || '미선택'}\n📝 내용: ${note || '없음'}`;
+        const successMsg = document.getElementById('successMsg');
+        successMsg.style.display = 'flex';
+        try {
+            await fetch('https://script.google.com/macros/s/AKfycbymzFquDdmIHcimqhO0LkSgNt8xp5x9f7WCztr9BZJedBfcPVjHlH2d9sI8nK9xkM8JVQ/exec', {
+                method:'POST', mode:'no-cors',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({ chat_id:'7299827824', text:text })
+            });
+        } catch(e) { console.error(e); }
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+            document.getElementById('userName').value = '';
+            document.getElementById('userContact').value = '';
+            document.getElementById('acType').value = '';
+            document.getElementById('userNote').value = '';
+        }, 4000);
+    }
+</script>
 </body>
 </html>
