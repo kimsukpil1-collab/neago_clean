@@ -2,154 +2,1101 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>클린에어컨 — 고압 살균 세척 전문</title>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PAGE EDITOR - 상세페이지 변경 프로그램</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Great+Vibes&family=Noto+Sans+KR:wght@300;400;700;900&family=Black+Han+Sans&display=swap" rel="stylesheet">
     <style>
-        :root { --blue:#0055ff; --ice:#e8f4ff; --dark:#0a1628; --mid:#1a3a6b; --gold:#ffbe00; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body { font-family:'Noto Sans KR',sans-serif; background:#fff; color:var(--dark); overflow-x:hidden; }
-        nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(0,30,80,0.97); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:0 60px; height:70px; border-bottom:2px solid rgba(0,85,255,0.4); }
-        .logo { font-family:'Black Han Sans',sans-serif; font-size:1.6rem; color:#fff; text-decoration:none; display:flex; align-items:center; gap:8px; }
-        .logo span { color:var(--gold); }
-        nav ul { list-style:none; display:flex; gap:8px; }
-        nav ul a { color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.88rem; font-weight:700; padding:8px 16px; border:1px solid rgba(255,255,255,0.15); border-radius:4px; transition:all 0.3s; }
-        nav ul a:hover { color:#fff; border-color:var(--blue); background:rgba(0,85,255,0.2); }
-        .nav-cta { background:var(--blue) !important; color:#fff !important; border-color:var(--blue) !important; }
-        .hero { min-height:100vh; background:linear-gradient(160deg,var(--dark) 0%,var(--mid) 60%,#0033aa 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:100px 20px 60px; position:relative; overflow:hidden; }
-        .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(0,85,255,0.15) 0%,transparent 70%); }
-        .hero-badge { font-size:0.75rem; letter-spacing:5px; color:var(--gold); font-weight:900; margin-bottom:24px; border:1px solid rgba(255,190,0,0.4); padding:6px 20px; border-radius:30px; background:rgba(255,190,0,0.08); position:relative; z-index:1; }
-        .hero h1 { font-family:'Black Han Sans',sans-serif; font-size:clamp(2.5rem,7vw,5.5rem); color:#fff; line-height:1.2; margin-bottom:24px; position:relative; z-index:1; }
-        .hero h1 .blue { color:#5599ff; }
-        .hero h1 .gold { color:var(--gold); }
-        .hero-sub { font-size:clamp(1rem,2.5vw,1.25rem); color:rgba(255,255,255,0.7); line-height:1.8; max-width:560px; margin:0 auto 50px; position:relative; z-index:1; }
-        .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1; }
-        .btn-main { padding:18px 48px; background:var(--blue); color:#fff; font-weight:900; font-size:1rem; border:none; border-radius:6px; cursor:pointer; text-decoration:none; display:inline-block; box-shadow:0 8px 30px rgba(0,85,255,0.4); transition:all 0.3s; }
-        .btn-main:hover { background:#0044dd; transform:translateY(-3px); }
-        .btn-sub { padding:18px 48px; background:transparent; color:#fff; font-weight:700; font-size:1rem; border:2px solid rgba(255,255,255,0.3); border-radius:6px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.3s; }
-        .btn-sub:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
-        .stats { background:var(--dark); display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(0,85,255,0.3); }
-        .stat-item { padding:40px 20px; text-align:center; border-right:1px solid rgba(0,85,255,0.2); }
-        .stat-item:last-child { border-right:none; }
-        .stat-n { font-family:'Black Han Sans',sans-serif; font-size:2.8rem; color:var(--gold); display:block; }
-        .stat-l { font-size:0.82rem; color:rgba(255,255,255,0.6); margin-top:6px; font-weight:600; }
-        .features { padding:100px 60px; background:#fff; }
-        .sec-label { font-size:0.72rem; letter-spacing:5px; color:var(--blue); font-weight:900; display:block; margin-bottom:16px; text-transform:uppercase; }
-        .sec-h2 { font-family:'Black Han Sans',sans-serif; font-size:clamp(1.8rem,3.5vw,3rem); color:var(--dark); margin-bottom:60px; line-height:1.2; }
-        .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; max-width:1200px; margin:0 auto; }
-        .feat-card { background:var(--ice); border-radius:16px; padding:40px 30px; border:1px solid rgba(0,85,255,0.1); transition:transform 0.3s,box-shadow 0.3s; }
-        .feat-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,85,255,0.12); }
-        .feat-icon { font-size:2.5rem; margin-bottom:20px; display:block; }
-        .feat-title { font-family:'Black Han Sans',sans-serif; font-size:1.3rem; color:var(--dark); margin-bottom:12px; }
-        .feat-desc { font-size:0.92rem; color:#555; line-height:1.8; }
-        .gallery { padding:100px 0; background:#f8faff; }
-        .gallery-inner { max-width:1400px; margin:0 auto; padding:0 60px; }
-        .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:60px; }
-        .g-card { background:#dde8f5; border-radius:12px; aspect-ratio:4/3; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; border:1px solid rgba(0,85,255,0.15); transition:transform 0.3s; }
-        .g-card:hover { transform:scale(1.02); }
-        .g-card img { width:100%; height:100%; object-fit:cover; display:block; position:absolute; inset:0; }
-        .img-label { font-family:'Black Han Sans',sans-serif; font-size:1.2rem; color:rgba(0,85,255,0.35); letter-spacing:2px; position:relative; z-index:1; }
-        .process { padding:100px 60px; background:var(--dark); }
-        .proc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1200px; margin:60px auto 0; }
-        .proc-step { background:rgba(255,255,255,0.04); border:1px solid rgba(0,85,255,0.25); border-radius:12px; padding:36px 24px; text-align:center; }
-        .proc-num { font-family:'Black Han Sans',sans-serif; font-size:3rem; color:rgba(0,85,255,0.35); display:block; margin-bottom:16px; }
-        .proc-title { font-weight:900; color:#fff; font-size:1rem; margin-bottom:10px; }
-        .proc-desc { font-size:0.82rem; color:rgba(255,255,255,0.5); line-height:1.7; }
-        .cta-section { padding:120px 20px; text-align:center; background:linear-gradient(135deg,var(--blue) 0%,#0033aa 100%); }
-        .cta-section h2 { font-family:'Black Han Sans',sans-serif; font-size:clamp(2rem,4vw,3.5rem); color:#fff; margin-bottom:20px; }
-        .cta-section p { color:rgba(255,255,255,0.8); font-size:1.1rem; margin-bottom:50px; }
-        footer { background:#060f1f; padding:40px 60px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(0,85,255,0.2); }
-        .foot-logo { font-family:'Black Han Sans',sans-serif; font-size:1.3rem; color:#fff; }
-        .foot-logo span { color:var(--gold); }
-        .foot-info { font-size:0.8rem; color:rgba(255,255,255,0.4); text-align:right; line-height:1.8; }
-        @media (max-width:1024px) {
-            nav { padding:0 20px; }
-            nav ul a { padding:6px 10px; font-size:0.8rem; }
-            .stats { grid-template-columns:repeat(2,1fr); }
-            .feat-grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; }
-            .gallery-grid { grid-template-columns:repeat(2,1fr); }
-            .proc-grid { grid-template-columns:repeat(2,1fr); }
-            .features,.gallery-inner,.process { padding-left:20px; padding-right:20px; }
-            footer { flex-direction:column; gap:16px; text-align:center; padding:30px 20px; }
-            .foot-info { text-align:center; }
+        :root { 
+            --primary: #8a9bc4; 
+            --secondary: #9088b0;
+            --gold: #f0c040;
+            --bg: #0a0a0f; 
+        }
+        * { box-sizing: border-box; }
+        body { background: var(--bg); color: #fff; margin: 0; font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* 네비게이션 */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 80px; background: rgba(10,10,15,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); }
+        .logo { 
+            font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 900; text-decoration: none; 
+            background: linear-gradient(to right, #667eea, #a78bfa, #764ba2, #a78bfa, #667eea); 
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            animation: logo-shine 3s linear infinite; 
+        }
+        @keyframes logo-shine { to { background-position: 200% center; } }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        .order-btn {
+            padding: 10px 24px; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff; font-weight: 900; border: none; border-radius: 5px;
+            font-size: 1rem; cursor: pointer; text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .order-btn:hover { opacity: 0.85; }
+        .call-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff !important; padding: 10px 20px; border-radius: 5px; font-weight: 900; text-decoration: none; border: 1px solid #fff; }
+
+        /* ===== 히어로 섹션 - 초보→챔피언 스토리 배너 ===== */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #07050f;
+        }
+
+        /* 배경: 경기장 조명 느낌 */
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,192,64,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 90% 60% at 50% 30%, rgba(102,126,234,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 30% at 20% 80%, rgba(118,75,162,0.1) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 30% at 80% 80%, rgba(118,75,162,0.1) 0%, transparent 60%);
+        }
+        /* 바닥 빛 반사 */
+        .hero-floor {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 35%;
+            background: linear-gradient(to top, rgba(240,192,64,0.06) 0%, transparent 100%);
+        }
+        /* 스타디움 라인 */
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(240,192,64,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102,126,234,0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse 85% 75% at 50% 60%, black 20%, transparent 100%);
+        }
+
+        /* 파티클 = 금빛 + 보라빛 혼합 */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(240,192,64,0.8);
+            animation: float-particle linear infinite;
+        }
+        .particle.purple { background: rgba(167,139,250,0.7); }
+        @keyframes float-particle {
+            0%   { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: 0.8; }
+            100% { transform: translateY(-5vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        /* ── 스토리 레이아웃: 왼쪽 BEFORE / 오른쪽 AFTER ── */
+        .hero-story {
+            position: absolute; inset: 0;
+            display: flex;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* BEFORE 패널 - 어두운 절반 */
+        .story-before {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 80px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+        }
+        /* 쓰러진 사람 (CSS 실루엣) */
+        .figure-fallen {
+            position: relative;
+            width: 80px; height: 80px;
+            opacity: 0.25;
+            animation: fallen-breathe 4s ease-in-out infinite;
+        }
+        @keyframes fallen-breathe { 0%,100%{opacity:0.22;} 50%{opacity:0.30;} }
+        .figure-fallen .body {
+            position: absolute;
+            bottom: 10px; left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+            width: 48px; height: 14px;
+            background: #fff;
+            border-radius: 7px;
+        }
+        .figure-fallen .head {
+            position: absolute;
+            bottom: 26px; left: 50%;
+            transform: translateX(-50%) translateX(22px);
+            width: 18px; height: 18px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .before-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.2);
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        /* AFTER 패널 - 황금빛 절반 */
+        .story-after {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 60px;
+        }
+        /* 서있는 우승 실루엣 */
+        .figure-champion {
+            position: relative;
+            width: 90px; height: 130px;
+            animation: champ-rise 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+            animation-delay: 0.4s;
+        }
+        @keyframes champ-rise {
+            from { transform: translateY(40px) scale(0.7); opacity: 0; }
+            to   { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .figure-champion .head {
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 22px; height: 22px;
+            background: rgba(240,192,64,0.9);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(240,192,64,0.6);
+        }
+        .figure-champion .body {
+            position: absolute;
+            top: 26px; left: 50%; transform: translateX(-50%);
+            width: 18px; height: 44px;
+            background: rgba(240,192,64,0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(240,192,64,0.4);
+        }
+        .figure-champion .arm-l {
+            position: absolute;
+            top: 28px; left: calc(50% - 30px);
+            width: 26px; height: 10px;
+            background: rgba(240,192,64,0.7);
+            border-radius: 5px;
+            transform: rotate(-55deg);
+            transform-origin: right center;
+        }
+        .figure-champion .arm-r {
+            position: absolute;
+            top: 28px; left: calc(50% + 4px);
+            width: 26px; height: 10px;
+            background: rgba(240,192,64,0.7);
+            border-radius: 5px;
+            transform: rotate(55deg);
+            transform-origin: left center;
+        }
+        .figure-champion .leg-l {
+            position: absolute;
+            top: 68px; left: calc(50% - 14px);
+            width: 12px; height: 40px;
+            background: rgba(240,192,64,0.7);
+            border-radius: 5px;
+            transform: rotate(8deg);
+        }
+        .figure-champion .leg-r {
+            position: absolute;
+            top: 68px; left: calc(50% + 2px);
+            width: 12px; height: 40px;
+            background: rgba(240,192,64,0.7);
+            border-radius: 5px;
+            transform: rotate(-8deg);
+        }
+        /* 트로피 */
+        .trophy {
+            position: absolute;
+            top: -46px; left: 50%; transform: translateX(-50%);
+            width: 28px; height: 28px;
+            animation: trophy-glow 1.5s ease-in-out infinite;
+        }
+        .trophy::before {
+            content: '🏆';
+            font-size: 28px;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        @keyframes trophy-glow {
+            0%,100% { filter: drop-shadow(0 0 6px rgba(240,192,64,0.6)); transform: translateX(-50%) scale(1); }
+            50%      { filter: drop-shadow(0 0 18px rgba(240,192,64,1)); transform: translateX(-50%) scale(1.15); }
+        }
+        /* 방사형 금빛 빛줄기 */
+        .rays {
+            position: absolute;
+            bottom: 60px; left: 50%;
+            transform: translateX(-50%);
+            width: 260px; height: 260px;
+            z-index: -1;
+        }
+        .ray {
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 2px;
+            transform-origin: bottom center;
+            background: linear-gradient(to top, rgba(240,192,64,0.4), transparent);
+            border-radius: 2px;
+            animation: ray-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes ray-pulse { 0%,100%{opacity:0.3;} 50%{opacity:0.9;} }
+
+        .after-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            color: rgba(240,192,64,0.5);
+            margin-top: 24px;
+            text-transform: uppercase;
+        }
+
+        /* 중앙 분리선 화살표 */
+        .divider-arrow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+        }
+        .arrow-line {
+            width: 50px; height: 2px;
+            background: linear-gradient(90deg, rgba(102,126,234,0.6), rgba(240,192,64,0.8));
+            border-radius: 2px;
+        }
+        .arrow-tip {
+            width: 0; height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 14px solid rgba(240,192,64,0.7);
+            margin-left: 50px;
+            margin-top: -10px;
+        }
+        .arrow-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        /* ── 메인 텍스트 콘텐츠 ── */
+        .hero-content {
+            position: relative; z-index: 10;
+            text-align: center;
+            padding: 40px 20px 120px;
+            max-width: 860px;
+        }
+
+        /* 상단 스토리 태그라인 */
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+        .tag-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #f0c040;
+            box-shadow: 0 0 10px rgba(240,192,64,0.8);
+            animation: dot-blink 1.4s ease-in-out infinite;
+        }
+        @keyframes dot-blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+        .tag-text {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: rgba(240,192,64,0.7);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 핵심 헤드라인 */
+        .hero-headline {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(2rem, 5vw, 4.6rem);
+            line-height: 1.18;
+            letter-spacing: -1px;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+        .hero-headline .line-before {
+            display: block;
+            font-size: 0.52em;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 400;
+        }
+        .hero-headline .line-main {
+            display: block;
+        }
+        .hero-headline .accent {
+            background: linear-gradient(110deg, #f0c040 10%, #f97316 45%, #f0c040 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gold-shine 2.5s linear infinite;
+        }
+        @keyframes gold-shine { to { background-position: 200% center; } }
+        .hero-headline .line-after {
+            display: block;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .hero-sub {
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            color: rgba(255,255,255,0.45);
+            font-weight: 400;
+            margin-bottom: 44px;
+            line-height: 1.8;
+        }
+        .hero-sub strong { color: rgba(255,255,255,0.75); font-weight: 700; }
+
+        /* CTA */
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            padding: 18px 48px;
+            background: linear-gradient(135deg, #d4a520, #f0c040, #d4a520);
+            background-size: 200% auto;
+            color: #1a0a00;
+            font-size: 1.05rem;
+            font-weight: 900;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(240,192,64,0.45);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            animation: btn-gold-shine 3s linear infinite;
+        }
+        @keyframes btn-gold-shine { to { background-position: 200% center; } }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px rgba(240,192,64,0.65); }
+        .btn-ghost {
+            padding: 18px 40px;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.05rem;
+            font-weight: 700;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+        /* 숫자 통계 */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+        .stat-number span { color: #f0c040; }
+        .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.35); letter-spacing: 2px; margin-top: 6px; text-transform: uppercase; }
+
+        /* 스크롤 힌트 */
+        .scroll-hint {
+            position: absolute;
+            bottom: 28px; left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            animation: bounce-down 2s ease-in-out infinite;
+        }
+        .scroll-hint::after { content: ' ▼'; }
+        @keyframes bounce-down { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(8px);} }
+
+        /* 모바일 히어로 스토리 숨김 */
+        @media(max-width:768px){
+            .hero-story { display:none; }
+            .hero-content { padding: 60px 20px 100px; }
+        }
+
+        /* ===== 금속판 슬로건 ===== */
+        .metal-plate {
+            display: block; margin: 40px auto; width: 90%; max-width: 800px; 
+            padding: 60px 20px; border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #a78bfa 20%, #764ba2 40%, #a78bfa 60%, #667eea 80%, #a78bfa 100%);
+            border: 3px solid #8b7cfa;
+            box-shadow: 0 20px 50px rgba(102,126,234,0.5);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .metal-plate::before {
+            content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 65%, rgba(255,255,255,0) 100%);
+            animation: light-sweep 3.3s infinite;
+        }
+        @keyframes light-sweep { 0% { left: -150%; } 90% { left: 150%; } 100% { left: 150%; } }
+        .wave-text { display: block; font-family: 'Noto Sans KR', sans-serif; font-size: 3.8rem; font-weight: 900; letter-spacing: -2px; color: #ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); animation: move-up-down 3.5s ease-in-out infinite; position: relative; z-index: 2; }
+        @keyframes move-up-down { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .sub-copy { font-size: 1.4rem; font-weight: 800; letter-spacing: 12px; color: #1a1a24; text-transform: uppercase; margin-top: 15px; position: relative; z-index: 2; }
+
+        /* ===== 가격표 섹션 - 말풍선 포함 ===== */
+        #lineup { padding: 80px 0 40px; text-align: center; }
+        .lineup-title { font-family: 'Cinzel', serif; font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; letter-spacing: 5px; }
+
+        /* 떠다니는 말풍선 */
+        .balloon-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+        .floating-balloon {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f0c040, #f97316);
+            color: #1a0a00;
+            font-size: 1.1rem;
+            font-weight: 900;
+            padding: 16px 32px;
+            border-radius: 40px;
+            box-shadow: 0 8px 30px rgba(240,192,64,0.4);
+            animation: balloon-float 3s ease-in-out infinite;
+            position: relative;
+        }
+        .floating-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -14px; left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #f97316;
+        }
+        @keyframes balloon-float {
+            0%,100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        .balloon-emoji { font-size: 1.4rem; animation: spin-slow 4s linear infinite; }
+        @keyframes spin-slow { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+
+        /* 가격표 그리드 */
+        .lineup-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; 
+            max-width: 1300px; margin: 0 auto; align-items: start; padding: 0 20px;
+            position: relative;
+        }
+
+        /* 가격표 카드 - 말풍선이 따라다니는 효과 */
+        .price-card-wrap {
+            position: relative;
+        }
+        .price-card-wrap .hover-balloon {
+            position: absolute;
+            top: -50px; left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #1a1a2e, #2a2a44);
+            border: 1px solid rgba(167,139,250,0.5);
+            color: #c084fc;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(102,126,234,0.3);
+        }
+        .price-card-wrap .hover-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(167,139,250,0.5);
+        }
+        .price-card-wrap:hover .hover-balloon {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-6px);
+        }
+
+        .lineup-card { background: #0f0f15; border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 15px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+        .lineup-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+        .lineup-grid img { width: 100%; height: auto; display: block; filter: brightness(1.05); }
+
+        /* ===== 철학 섹션 ===== */
+        .lab-section { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0f 85%); text-align: center; }
+        .intro-line { font-family: 'Noto Sans KR', sans-serif; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 900; color: #444; margin-bottom: 20px; display: block; opacity: 0.8; }
+        .main-line { font-family: 'Noto Sans KR', sans-serif; font-size: clamp(1.8rem, 6vw, 4.5rem); font-weight: 900; color: #ffffff; text-shadow: 0px 0px 20px rgba(255,255,255,0.2), 2px 6px 15px rgba(0,0,0,1); display: block; margin-bottom: 50px; }
+        .shining-text { background: linear-gradient(110deg, #667eea 33%, #a78bfa 50%, #764ba2 66%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: slash-shine 3s linear infinite; }
+        @keyframes slash-shine { to { background-position: 200% center; } }
+        .signature-name { font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 8vw, 4.5rem); color: var(--primary); display: block; text-shadow: 2px 5px 12px rgba(0,0,0,1); }
+        .peace-wish { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #555; letter-spacing: 10px; margin-top: 10px; }
+
+        /* ===== 혜택 폭격 섹션 ===== */
+        .benefits-section {
+            background: linear-gradient(180deg, #0a0a0f 0%, #0d0d18 50%, #0a0a0f 100%);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .benefits-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .benefits-title .highlight {
+            color: #f0c040;
+            text-shadow: 0 0 30px rgba(240,192,64,0.5);
+        }
+        .benefits-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 70px;
+            font-weight: 400;
+        }
+
+        /* 혜택 카드 그리드 */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto 80px;
+        }
+        .benefit-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: left;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #667eea, #a78bfa);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .benefit-card:hover { transform: translateY(-5px); background: rgba(102,126,234,0.08); border-color: rgba(102,126,234,0.5); }
+        .benefit-card:hover::before { opacity: 1; }
+        .benefit-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+        .benefit-card h3 { font-size: 1.05rem; font-weight: 900; color: #fff; margin: 0 0 10px; }
+        .benefit-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+
+        /* 절약금액 계산기 느낌 강조 박스 */
+        .savings-bomb {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            background: linear-gradient(135deg, rgba(240,192,64,0.08), rgba(249,115,22,0.08));
+            border: 2px solid rgba(240,192,64,0.3);
+            border-radius: 24px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .savings-bomb::before {
+            content: '💰';
+            position: absolute;
+            top: -20px; right: 30px;
+            font-size: 6rem;
+            opacity: 0.08;
+        }
+        .savings-label {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: #f0c040;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .savings-headline {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+        .savings-headline strong {
+            color: #f0c040;
+            font-size: 1.2em;
+        }
+        .savings-detail {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.9;
+        }
+        .savings-detail b { color: #f0c040; }
+
+        /* 최종 가치 선언 */
+        .value-declaration {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: rgba(102,126,234,0.06);
+            border: 1px solid rgba(102,126,234,0.25);
+            border-radius: 24px;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.7);
+        }
+        .value-declaration .big-point {
+            display: block;
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .value-declaration .big-point em {
+            font-style: normal;
+            color: #a78bfa;
+        }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #a78bfa);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 6px 18px;
+            border-radius: 8px;
+            margin: 0 4px;
+        }
+
+        /* ===== 주문서 섹션 ===== */
+        .offer-section { min-height: 100vh; padding: 80px 20px; display: flex; justify-content: center; align-items: flex-start; background: #e0e5ec; }
+        #main-section { width: 100%; max-width: 580px; padding: 50px 45px; background: #e0e5ec; border-radius: 40px; border: 1.5px solid var(--primary); box-shadow: 20px 20px 40px #bec3c9, -20px -20px 40px #ffffff; position: relative; }
+        #success-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(224, 229, 236, 0.98); border-radius: 40px; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
+        .success-glass { background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); backdrop-filter: blur(10px); padding: 50px 30px; border-radius: 25px; text-align: center; box-shadow: 10px 10px 20px #bec3c9, -10px -10px 20px #ffffff; border: 1px solid var(--primary); }
+        .msg-line-1 { font-size: 26px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .msg-line-2 { font-size: 16px; color: #666; font-weight: 400; }
+        .offer-title { font-family: 'Noto Sans KR', sans-serif; font-size: 38px; font-weight: 900; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 15px; }
+        .field { margin-bottom: 25px; text-align: left; }
+        .field label { display: block; font-size: 11px; color: #888; margin-bottom: 6px; font-weight: bold; letter-spacing: 1px; }
+        .offer-input { width: 100%; border: none; padding: 18px 20px; font-size: 16px; background: #e0e5ec; color: #2c3e50; outline: none; font-family: 'Noto Sans KR', sans-serif; border-radius: 15px; box-shadow: inset 5px 5px 10px #bec3c9, inset -5px -5px 10px #ffffff; transition: all 0.3s; }
+        .submit-btn { width: 100%; padding: 22px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: #fff; border-radius: 15px; font-size: 18px; font-weight: 900; border: none; cursor: pointer; box-shadow: 8px 8px 16px #bec3c9, -8px -8px 16px #ffffff; margin-top: 0; transition: all 0.3s; }
+        .submit-btn:hover { transform: translateY(-2px); }
+        .signature-box { margin-top: 50px; padding-top: 30px; border-top: 1px solid #d1d9e6; text-align: center; }
+        .signature-box .signature-name { font-family: 'Great Vibes', cursive; font-size: 3rem; color: #111; display: block; text-shadow: none; }
+        .phone-gold { font-size: 17px; font-weight: 900; color: var(--primary); display: inline-block; letter-spacing: 2px; margin-top: 10px; }
+
+        /* 반응형 */
+        @media (max-width: 1024px) { 
+            nav { padding: 10px 5px; } 
+            .logo { font-size: 1.15rem; } 
+            nav ul { gap: 5px; } 
+            .dropbtn { padding: 8px 10px; font-size: 0.8rem; } 
+            .call-btn { padding: 8px 12px; font-size: 0.75rem; }
+            .wave-text { font-size: 1.45rem; } 
+            .sub-copy { font-size: 0.65rem; letter-spacing: 3px; }
+            .hero-stats { gap: 30px; }
+            .stat-number { font-size: 1.8rem; }
+            .lineup-grid { grid-template-columns: 1fr !important; max-width: 100vw !important; gap: 0; padding: 0; }
+            .lineup-card { border-radius: 0; border-left: none; border-right: none; width: 100vw; }
+            .price-card-wrap .hover-balloon { display: none; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .savings-bomb { padding: 40px 24px; }
+            #main-section { padding: 40px 24px; }
+            .offer-title { font-size: 28px; }
         }
     </style>
 </head>
 <body>
+
 <nav>
-    <a href="index.html" class="logo">❄️ 클린<span>에어컨</span></a>
+    <a href="#home" class="logo">PAGE EDITOR</a>
     <ul>
-        <li><a href="index.html">홈</a></li>
-        <li><a href="about.html">서비스소개</a></li>
-        <li><a href="portfolio.html">청소사례</a></li>
-        <li><a href="contact.html" class="nav-cta">예약상담</a></li>
+        <li><a href="#order" class="order-btn">주문하기</a></li>
+        <li><a href="tel:010-7928-8645" class="call-btn">010-7928-8645</a></li>
     </ul>
 </nav>
-<section class="hero">
-    <div class="hero-badge">❄️ 서울·경기 전 지역 1시간 내 방문</div>
-    <h1>숨막히는 곰팡이<br><span class="blue">완벽 분해 청소</span>로<br><span class="gold">해결하세요</span></h1>
-    <p class="hero-sub">단순 청소가 아닌 <strong>고압 살균 세척</strong>으로<br>가족의 건강을 지킵니다.</p>
-    <div class="hero-btns">
-        <a href="contact.html" class="btn-main">지금 예약하기</a>
-        <a href="portfolio.html" class="btn-sub">청소 사례 보기</a>
+
+<!-- ===== 히어로 섹션 ===== -->
+<div id="home" class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-floor"></div>
+    <div class="hero-grid"></div>
+
+    <!-- 배경 스토리 실루엣 -->
+    <div class="hero-story">
+        <!-- BEFORE: 쓰러진 초보 -->
+        <div class="story-before">
+            <div class="figure-fallen">
+                <div class="head"></div>
+                <div class="body"></div>
+            </div>
+            <div class="before-label">Before</div>
+        </div>
+
+        <!-- AFTER: 트로피 든 챔피언 -->
+        <div class="story-after">
+            <!-- 방사형 빛줄기 -->
+            <div class="rays">
+                <div class="ray" style="height:130px;transform-origin:bottom center;transform:rotate(-60deg);animation-delay:0s;"></div>
+                <div class="ray" style="height:150px;transform-origin:bottom center;transform:rotate(-40deg);animation-delay:0.3s;"></div>
+                <div class="ray" style="height:120px;transform-origin:bottom center;transform:rotate(-20deg);animation-delay:0.1s;"></div>
+                <div class="ray" style="height:140px;transform-origin:bottom center;transform:rotate(0deg);animation-delay:0.5s;"></div>
+                <div class="ray" style="height:130px;transform-origin:bottom center;transform:rotate(20deg);animation-delay:0.2s;"></div>
+                <div class="ray" style="height:150px;transform-origin:bottom center;transform:rotate(40deg);animation-delay:0.4s;"></div>
+                <div class="ray" style="height:120px;transform-origin:bottom center;transform:rotate(60deg);animation-delay:0.1s;"></div>
+            </div>
+            <div class="figure-champion">
+                <div class="trophy"></div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="arm-l"></div>
+                <div class="arm-r"></div>
+                <div class="leg-l"></div>
+                <div class="leg-r"></div>
+            </div>
+            <div class="after-label">After</div>
+        </div>
     </div>
-</section>
-<div class="stats">
-    <div class="stat-item"><span class="stat-n">5,000+</span><div class="stat-l">누적 시공 건수</div></div>
-    <div class="stat-item"><span class="stat-n">98%</span><div class="stat-l">고객 만족도</div></div>
-    <div class="stat-item"><span class="stat-n">1hr</span><div class="stat-l">방문 소요시간</div></div>
-    <div class="stat-item"><span class="stat-n">99.9%</span><div class="stat-l">살균 효과</div></div>
+
+    <!-- 중앙 화살표 -->
+    <div class="divider-arrow">
+        <div style="display:flex;align-items:center;">
+            <div class="arrow-line"></div>
+            <div class="arrow-tip"></div>
+        </div>
+        <div class="arrow-label">Program</div>
+    </div>
+
+    <!-- 파티클 -->
+    <div class="particle" style="left:8%;width:3px;height:3px;animation-duration:9s;animation-delay:0s;"></div>
+    <div class="particle purple" style="left:18%;width:5px;height:5px;animation-duration:12s;animation-delay:2s;"></div>
+    <div class="particle" style="left:30%;width:4px;height:4px;animation-duration:7.5s;animation-delay:1s;"></div>
+    <div class="particle purple" style="left:55%;width:3px;height:3px;animation-duration:11s;animation-delay:3s;"></div>
+    <div class="particle" style="left:70%;width:6px;height:6px;animation-duration:8s;animation-delay:0.5s;"></div>
+    <div class="particle purple" style="left:82%;width:4px;height:4px;animation-duration:10s;animation-delay:4s;"></div>
+    <div class="particle" style="left:92%;width:3px;height:3px;animation-duration:13s;animation-delay:1.5s;"></div>
+
+    <!-- 메인 텍스트 -->
+    <div class="hero-content">
+        <div class="hero-tag">
+            <span class="tag-dot"></span>
+            <span class="tag-text">Detail Page Editor</span>
+            <span class="tag-dot"></span>
+        </div>
+
+        <h1 class="hero-headline">
+            <span class="line-before">디자인 몰라도 괜찮다</span>
+            <span class="line-main">초보가 <span class="accent">챔피언</span>이 되는</span>
+            <span class="line-after">단 하나의 프로그램</span>
+        </h1>
+
+        <p class="hero-sub">
+            어제까지 외주비에 치이던 당신이 — <strong>오늘부터 직접 만든다</strong><br>
+            코딩 제로 · 디자이너 제로 · 비용 제로
+        </p>
+
+        <div class="hero-cta">
+            <a href="#order" class="btn-primary">🏆 지금 챔피언 되기</a>
+            <a href="#lineup" class="btn-ghost">가격표 보기</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">90<span>만~</span></div>
+                <div class="stat-label">최저 시작가</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span>∞</span></div>
+                <div class="stat-label">무한 수정</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1<span>일</span></div>
+                <div class="stat-label">습득 완료</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-hint">SCROLL</div>
 </div>
-<section class="features">
-    <div style="max-width:1200px;margin:0 auto;">
-        <span class="sec-label">WHY CLEAN AIRCON</span>
-        <h2 class="sec-h2">왜 클린에어컨인가요?</h2>
-        <div class="feat-grid">
-            <div class="feat-card"><span class="feat-icon">🦠</span><div class="feat-title">고압 살균 세척</div><p class="feat-desc">일반 청소로는 제거되지 않는 곰팡이·세균을 고압 스팀으로 99.9% 살균합니다.</p></div>
-            <div class="feat-card"><span class="feat-icon">🔧</span><div class="feat-title">완전 분해 청소</div><p class="feat-desc">내부 부품까지 완전 분해하여 눈에 보이지 않는 오염까지 깨끗이 제거합니다.</p></div>
-            <div class="feat-card"><span class="feat-icon">⚡</span><div class="feat-title">1시간 내 완료</div><p class="feat-desc">서울·경기 전 지역 1시간 내 방문, 빠르고 깔끔하게 마무리합니다.</p></div>
+
+<!-- 섹션 1.5: 금속판 사명 -->
+<div class="metal-plate">
+    <h1 class="wave-text">버튼 하나로 평생 무한 변경</h1>
+    <p class="sub-copy">CUSTOMIZE FOREVER WITH ONE CLICK</p>
+</div>
+
+<!-- 섹션 2: 가격표 갤러리 (말풍선 포함) -->
+<section id="lineup">
+    <h2 class="lineup-title">PRICE TABLE</h2>
+
+    <div class="balloon-wrapper">
+        <div class="floating-balloon">
+            <span class="balloon-emoji">🎯</span>
+            한 번 구매하면 평생 상세페이지 고민 끝 — 초보자도 오늘 바로 전문가
+        </div>
+    </div>
+
+    <div class="lineup-grid">
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🏷️ 한 번 결제로 평생 사용!</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/221.jpg?raw=true" alt="가격표 1" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">✅ 코딩 몰라도 OK</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/222.jpg?raw=true" alt="가격표 2" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🚀 외주비 0원 절약</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/223.jpg?raw=true" alt="가격표 3" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🎨 프로급 디자인 즉시 완성</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/224.jpg?raw=true" alt="가격표 4" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">⚡ 수정 요청? 1분이면 끝</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/225.jpg?raw=true" alt="가격표 5" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">💰 연간 수백만원 절약</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/226.jpg?raw=true" alt="가격표 6" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🌟 초보 → 전문가 당일 완성</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/227.jpg?raw=true" alt="가격표 7" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🔥 지금 당장 수익화 시작</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/228.jpg?raw=true" alt="가격표 8" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🎁 구매 후 24시간 내 전달</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/229.jpg?raw=true" alt="가격표 9" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">🛠️ 원하는 대로 무한 커스텀</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/230.jpg?raw=true" alt="가격표 10" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">📱 PC·모바일 모두 완벽 지원</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/231.jpg?raw=true" alt="가격표 11" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap">
+            <div class="hover-balloon">💎 5천만원짜리 기술을 90만원에</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/232.jpg?raw=true" alt="가격표 12" loading="lazy"></div>
+        </div>
+        <div class="price-card-wrap" style="grid-column: 2;">
+            <div class="hover-balloon">🏆 구매자 전원 평생 업데이트</div>
+            <div class="lineup-card"><img src="https://github.com/kimsukpil1-collab/program/blob/main/233.jpg?raw=true" alt="가격표 13" loading="lazy"></div>
         </div>
     </div>
 </section>
-<section class="gallery">
-    <div class="gallery-inner">
-        <span class="sec-label">WORK GALLERY</span>
-        <h2 class="sec-h2">실제 작업 사례</h2>
-        <div class="gallery-grid" id="gallery-grid"></div>
+
+<!-- 섹션 3: 철학 -->
+<section class="lab-section">
+    <div>
+        <span class="intro-line">디자인을 바꾸는 데 비용이 들지 않는다면,</span>
+        <span class="main-line"><span class="shining-text">무한한 가능성</span>이 펼쳐집니다.</span>
+        <span class="signature-name">Sukbeom Kim</span>
+        <div class="peace-wish">Innovation</div>
     </div>
 </section>
-<section class="process">
-    <div style="max-width:1200px;margin:0 auto;">
-        <span class="sec-label">HOW IT WORKS</span>
-        <h2 class="sec-h2" style="color:#fff;">청소 과정</h2>
-        <div class="proc-grid">
-            <div class="proc-step"><span class="proc-num">01</span><div class="proc-title">예약 접수</div><p class="proc-desc">전화·온라인으로 간편하게 예약하세요.</p></div>
-            <div class="proc-step"><span class="proc-num">02</span><div class="proc-title">방문 진단</div><p class="proc-desc">전문가가 방문하여 에어컨 상태를 점검합니다.</p></div>
-            <div class="proc-step"><span class="proc-num">03</span><div class="proc-title">완전 분해 세척</div><p class="proc-desc">모든 부품을 분해하여 고압 살균 세척합니다.</p></div>
-            <div class="proc-step"><span class="proc-num">04</span><div class="proc-title">완료 확인</div><p class="proc-desc">작업 전·후 사진을 제공하고 깔끔히 마무리합니다.</p></div>
+
+<!-- ===== 혜택 폭격 섹션 ===== -->
+<section class="benefits-section">
+    <h2 class="benefits-title">
+        이 에디터를 쓰면<br>
+        <span class="highlight">정확히 무엇이 달라지나?</span>
+    </h2>
+    <p class="benefits-subtitle">구체적으로, 수치로, 지금 당장 확인하세요</p>
+
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <span class="benefit-icon">🎨</span>
+            <h3>외주비 완전 제로</h3>
+            <p>상세페이지 1장 외주 의뢰 시 평균 30~80만원. 이 에디터 하나면 앞으로 단 한 푼도 쓸 필요 없습니다.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">⚡</span>
+            <h3>수정에 1분도 안 걸린다</h3>
+            <p>가격 바꾸고, 이미지 교체하고, 레이아웃 뒤집는 데 코딩 한 줄 없이 버튼 클릭 몇 번으로 완성.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">🚀</span>
+            <h3>오늘 배워서 오늘 쓴다</h3>
+            <p>복잡한 프로그램 숙달 필요 없음. 아무것도 모르는 초보자가 하루 만에 프로 수준 페이지 완성.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">💼</span>
+            <h3>웹 수익화의 모든 문이 열린다</h3>
+            <p>스마트스토어, 쇼핑몰, 랜딩페이지, 클래스 모집… 웹디자인을 손에 넣는 순간 인터넷 비즈니스가 시작됩니다.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">🔄</span>
+            <h3>무한 수정 · 무한 재사용</h3>
+            <p>한 번 구매한 에디터로 평생, 어떤 상품에도, 몇 번이든 자유롭게 사용. 추가 비용 없음.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">📈</span>
+            <h3>전환율이 올라간다</h3>
+            <p>직접 빠르게 A/B 테스트 가능. 어떤 디자인이 더 팔리는지 오늘 시험하고 내일 반영.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">🕐</span>
+            <h3>디자이너 기다릴 필요 없다</h3>
+            <p>외주 진행 시 보통 3~7일 대기. 이 에디터는 아이디어 떠오른 그 순간 즉시 적용.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">🌐</span>
+            <h3>스마트스토어·자사몰 모두 적용</h3>
+            <p>네이버 스마트스토어부터 독립 쇼핑몰까지 어디든 붙여 쓸 수 있는 범용 에디터.</p>
+        </div>
+        <div class="benefit-card">
+            <span class="benefit-icon">🎯</span>
+            <h3>프리랜서 수익도 가능</h3>
+            <p>이 기술 하나로 남의 상세페이지도 만들어 줄 수 있습니다. 즉, 투자 회수 1건이면 끝.</p>
+        </div>
+    </div>
+
+    <!-- 절약금액 강조 박스 -->
+    <div class="savings-bomb">
+        <div class="savings-label">💸 연간 절약 시뮬레이션</div>
+        <div class="savings-headline">
+            외주 월 2회 × 50만원 = <strong>연 1,200만원</strong><br>
+            이 에디터 가격? <strong>단 90만원</strong>
+        </div>
+        <div class="savings-detail">
+            첫 달만 써도 이미 <b>본전 이상</b> — 2개월이면 <b>1,000만원 절약</b>이 시작됩니다.<br>
+            3년이면? <b>3,500만원 이상</b>을 주머니에 그냥 넣는 것과 같습니다.
+        </div>
+    </div>
+
+    <!-- 최종 가치 선언 -->
+    <div class="value-declaration">
+        <span class="big-point">
+            웹디자인은 단순한 기술이 아닙니다.<br>
+            <em>인터넷에서 돈 버는 모든 일</em>의 시작점입니다.
+        </span>
+        이 에디터를 손에 넣는다는 건, 웹의 모든 수익 모델에 접근하는 열쇠를 가지는 것입니다.
+        스마트스토어 판매, 클래스 모집, 랜딩페이지 제작, 프리랜서 수주 — 웹디자인이 없으면
+        하나도 시작할 수 없고, 웹디자인이 생기는 순간 전부가 열립니다.<br><br>
+        누군가 10년 전에 이 기술을 알려줬다면 
+        <span class="price-tag">5,000만원</span>
+        도 아깝지 않았을 겁니다.<br>
+        그것을 지금
+        <span class="price-tag">90만원~250만원</span>
+        에 알려드립니다.
+    </div>
+</section>
+
+<!-- 섹션 4: 주문서 -->
+<section id="order" class="offer-section">
+    <div id="main-section">
+        <div id="success-overlay">
+            <div class="success-glass">
+                <div class="msg-line-1">주문이 접수되었습니다! 🎉</div>
+                <div class="msg-line-2">24시간 내 연락드리겠습니다.</div>
+            </div>
+        </div>
+
+        <h1 class="offer-title">디자인 프로그램 주문서</h1>
+        
+        <div class="field">
+            <label>어떤 섹션 프로그램이 필요한가요?</label>
+            <input type="text" id="product-name" class="offer-input" placeholder="">
+        </div>
+        
+        <div class="field">
+            <label>연락처</label>
+            <input type="text" id="user-contact" class="offer-input" placeholder="010-">
+        </div>
+        
+        <div style="background: rgba(102, 126, 234, 0.05); padding: 20px; border-radius: 15px; margin-top: 35px; display: flex; justify-content: space-between; align-items: center; box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;">
+            <div style="flex: 1;">
+                <div style="font-size: 12px; color: #888; margin-bottom: 8px; font-weight: 700; letter-spacing: 0.5px;">📎 첨부파일 전송 이메일</div>
+                <div style="font-size: 16px; color: var(--primary); font-weight: 700;">kimsukpil1@gmail.com</div>
+            </div>
+            <button onclick="copyEmail()" style="padding: 10px 20px; background: #e0e5ec; color: #666; border: none; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff; transition: all 0.2s;">주소 복사</button>
+        </div>
+        
+        <button class="submit-btn" onclick="handleFinalSubmit()">상담요청</button>
+        
+        <a href="https://smartstore.naver.com/pxq1/products/12976242217" target="_blank" style="display: block; width: 100%; box-sizing: border-box; padding: 22px; background: linear-gradient(135deg, #03c75a 0%, #029648 100%); color: #fff !important; border-radius: 15px; font-size: 18px; font-weight: 900; text-decoration: none; box-shadow: 8px 8px 16px #bec3c9, -8px -8px 16px #ffffff; margin-top: 20px; transition: all 0.3s; text-align: center; border: none; cursor: pointer;">네이버 스토어로 주문하기</a>
+        
+        <div class="signature-box">
+            <span class="signature-name">Sukbeom Kim</span>
+            <span class="phone-gold">010-7928-8645</span>
         </div>
     </div>
 </section>
-<section class="cta-section">
-    <h2>지금 바로 예약하세요!</h2>
-    <p>성수기 전 미리 예약하면 더 빠른 방문이 가능합니다.</p>
-    <a href="contact.html" class="btn-main" style="font-size:1.1rem;padding:22px 60px;">무료 상담 예약하기</a>
-</section>
-<footer>
-    <div class="foot-logo">❄️ 클린<span>에어컨</span></div>
-    <div class="foot-info">서울·경기 전 지역 서비스<br>© 2025 클린에어컨. All rights reserved.</div>
-</footer>
+
 <script>
-    const BASE = "https://raw.githubusercontent.com/kimsukpil1-collab/neago_clean/main/";
-    const imgNums = ['01','02','03','04','05','06','07','08','09','10','11','12'];
-    const grid = document.getElementById('gallery-grid');
-    imgNums.forEach(num => {
-        const card = document.createElement('div');
-        card.className = 'g-card';
-        card.innerHTML = `<img src="${BASE}${num}.jpg" alt="작업사례" onerror="this.style.display='none'"><div class="img-label">${num}.jpg</div>`;
-        grid.appendChild(card);
-    });
+    function copyEmail() {
+        const email = 'kimsukpil1@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+            alert('이메일 주소가 복사되었습니다! 📋');
+        }).catch(() => {
+            alert('복사에 실패했습니다.');
+        });
+    }
+
+    async function handleFinalSubmit() {
+        const productName = document.getElementById('product-name').value.trim();
+        const contact = document.getElementById('user-contact').value.trim();
+        if(!productName || !contact) {
+            alert("필수 항목을 모두 입력해주세요.\n(프로그램 종류, 연락처)");
+            return;
+        }
+
+        const now = new Date();
+        const dateStr = `${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}`;
+        let count = parseInt(localStorage.getItem('last_count_program') || '0');
+        if(localStorage.getItem('last_date_program') !== dateStr) { count = 1; } else { count += 1; }
+        localStorage.setItem('last_date_program', dateStr);
+        localStorage.setItem('last_count_program', String(count));
+
+        const text = `🎨 [프로그램주문_${dateStr}_${count}]\n\n📦 상품명: ${productName}\n📞 연락처: ${contact}\n🕐 ${now.toLocaleString('ko-KR')}`;
+
+        // ✅ 성공 화면 즉시 표시
+        document.getElementById('success-overlay').style.display = 'flex';
+
+        // 구글 Apps Script로 전송 (no-cors — 제한 없음)
+        fetch('https://script.google.com/macros/s/AKfycbymzFquDdmIHcimqhO0LkSgNt8xp5x9f7WCztr9BZJedBfcPVjHlH2d9sI8nK9xkM8JVQ/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: '7299827824', text: text })
+        }).catch(e => console.error(e));
+
+        // 4초 후 초기화
+        setTimeout(() => {
+            document.getElementById('success-overlay').style.display = 'none';
+            document.getElementById('product-name').value = '';
+            document.getElementById('user-contact').value = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 4000);
+    }
 </script>
 </body>
 </html>
